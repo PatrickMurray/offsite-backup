@@ -82,7 +82,7 @@ ssh-copy-id pi@192.168.0.81
 ### Ansible Configuration Management
 
 ```bash
-ansible-playbook --ask-vault-pass main.yml
+ansible-playbook --ask-vault-pass remote.yml
 ```
 
 
