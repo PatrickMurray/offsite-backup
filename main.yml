@@ -1,0 +1,13 @@
+---
+- hosts: all 
+  vars_files:
+    - secrets.yml
+  roles:
+    - common
+    - security
+    - docker
+    - monitoring
+    - utils
+    - cron
+    - storage
+    - resilio

@@ -1,0 +1,34 @@
+---
+- name: Create grafana-agent docker volume
+  docker_volume:
+    name: grafana-agent
+  become: True
+
+
+- name: Get grafana-agent docker volume info
+  docker_volume_info:
+    name: grafana-agent
+  register: grafana_agent_volume
+  become: True
+
+
+- name: Copy grafana-agent configuration file to volume
+  template:
+    src: grafana-agent.yaml.j2
+    dest: "{{ grafana_agent_volume.volume.Mountpoint }}/agent.yaml"
+  notify:
+    - Restart grafana-agent docker container
+  become: True
+
+
+- name: Create grafana-agent docker container
+  docker_container:
+    name: grafana-agent
+    state: started
+    image: grafana/agent:latest
+    restart_policy: always
+    volumes:
+      - grafana-agent:/etc/agent
+    container_default_behavior: no_defaults
+  become: True
+
