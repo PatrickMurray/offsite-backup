@@ -1,0 +1,13 @@
+---
+- name: Install docker.io
+  package:
+    name: docker.io
+    state: latest
+  become: True
+
+
+- name: Install python3-docker
+  package:
+    name: python3-docker
+    state: latest
+  become: True

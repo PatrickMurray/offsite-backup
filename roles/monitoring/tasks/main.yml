@@ -1,0 +1,6 @@
+---
+- name: Include Components
+  include_tasks:
+    file: "components/{{ item }}.yml"
+  loop:
+    - grafana_agent

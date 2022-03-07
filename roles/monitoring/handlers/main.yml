@@ -1,0 +1,9 @@
+---
+- name: Restart grafana-agent docker container
+  docker_container:
+    name: grafana-agent
+    state: started
+    restart: True
+    container_default_behavior: no_defaults
+  become: True
+

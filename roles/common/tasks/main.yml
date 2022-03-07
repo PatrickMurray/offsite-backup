@@ -1,0 +1,21 @@
+---
+- name: Update apt package cache
+  apt:
+    update_cache: True
+  become: True
+
+
+- name: Create sshd_users group
+  group:
+    name: sshd_users
+    state: present
+  become: True
+
+
+- name: "Add {{ ansible_user }} to sshd_users group"
+  user:
+    name: "{{ ansible_user }}"
+    append: True
+    groups:
+      - sshd_users
+  become: True
